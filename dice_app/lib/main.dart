@@ -16,6 +16,15 @@ class _DiceState extends State<Dice> {
   var leftDice = 1;
   var rightDice = 1;
   Random random = new Random();
+  void randomize() {
+    setState(
+      () {
+        leftDice = random.nextInt(6) + 1;
+        rightDice = random.nextInt(6) + 1;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +38,15 @@ class _DiceState extends State<Dice> {
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: Column(
-          children: <Widget>[SizedBox(height: 70.0,),
+          children: <Widget>[
+            SizedBox(
+              height: 70.0,
+            ),
             Text(
               'Test your Luck',
               style: TextStyle(
                 fontFamily: 'DancingScript',
-                fontSize: 35.0,
+                fontSize: 55.0,
                 color: HexColor('#DB3A34'),
               ),
             ),
@@ -46,11 +58,7 @@ class _DiceState extends State<Dice> {
                 Expanded(
                   child: FlatButton(
                     onPressed: () {
-                      setState(
-                        () {
-                          leftDice = random.nextInt(6) + 1;
-                        },
-                      );
+                      randomize();
                     },
                     // mouseCursor:,
                     padding: EdgeInsets.all(8.0),
@@ -60,11 +68,7 @@ class _DiceState extends State<Dice> {
                 Expanded(
                   child: FlatButton(
                     onPressed: () {
-                      setState(
-                        () {
-                          rightDice = random.nextInt(6) + 1;
-                        },
-                      );
+                      randomize();
                     },
                     padding: EdgeInsets.all(8.0),
                     child: Image.asset("images/dice$rightDice.png"),
