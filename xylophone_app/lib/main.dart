@@ -61,6 +61,13 @@ class Home extends StatelessWidget {
                     player.play('note6.wav');
                   },
                   color: Colors.purple)),
+          Expanded(
+              child: RaisedButton(
+                  onPressed: () {
+                    final player = AudioCache();
+                    player.play('note7.wav');
+                  },
+                  color: Colors.deepOrangeAccent)),
         ],
       ),
     );
