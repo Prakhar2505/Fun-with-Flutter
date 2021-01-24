@@ -6,6 +6,11 @@ void main() {
 }
 
 class Home extends StatelessWidget {
+  void play(var a) {
+    final player = AudioCache();
+    player.play('note$a.wav');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,51 +26,44 @@ class Home extends StatelessWidget {
           Expanded(
             child: RaisedButton(
                 onPressed: () {
-                  final player = AudioCache();
-                  player.play('note1.wav');
+                  play(1);
                 },
                 color: Colors.blue),
           ),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note2.wav');
+                    play(2);
                   },
                   color: Colors.red)),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note3.wav');
+                    play(3);
                   },
                   color: Colors.green)),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note4.wav');
+                    play(4);
                   },
                   color: Colors.amberAccent)),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note5.wav');
+                    play(5);
                   },
                   color: Colors.pinkAccent)),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note6.wav');
+                    play(6);
                   },
                   color: Colors.purple)),
           Expanded(
               child: RaisedButton(
                   onPressed: () {
-                    final player = AudioCache();
-                    player.play('note7.wav');
+                    play(7);
                   },
                   color: Colors.deepOrangeAccent)),
         ],
