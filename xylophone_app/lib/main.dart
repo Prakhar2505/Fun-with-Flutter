@@ -11,6 +11,17 @@ class Home extends StatelessWidget {
     player.play('note$a.wav');
   }
 
+  Expanded buttons(Color color, var soundNumber) {
+    return Expanded(
+      child: RaisedButton(
+        onPressed: () {
+          play(soundNumber);
+        },
+        color: color,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,49 +34,13 @@ class Home extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Expanded(
-            child: RaisedButton(
-                onPressed: () {
-                  play(1);
-                },
-                color: Colors.blue),
-          ),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(2);
-                  },
-                  color: Colors.red)),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(3);
-                  },
-                  color: Colors.green)),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(4);
-                  },
-                  color: Colors.amberAccent)),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(5);
-                  },
-                  color: Colors.pinkAccent)),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(6);
-                  },
-                  color: Colors.purple)),
-          Expanded(
-              child: RaisedButton(
-                  onPressed: () {
-                    play(7);
-                  },
-                  color: Colors.deepOrangeAccent)),
+          buttons(Colors.blue, 1),
+          buttons(Colors.red, 2),
+          buttons(Colors.green, 3),
+          buttons(Colors.amberAccent, 4),
+          buttons(Colors.pinkAccent, 5),
+          buttons(Colors.purple, 6),
+          buttons(Colors.deepOrangeAccent, 7),
         ],
       ),
     );
