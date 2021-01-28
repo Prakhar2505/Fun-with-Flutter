@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int k = 0;
+  int k = -1;
   int score = 0;
   List questions = [
     'Amartya Sen was awarded the Nobel prize for his contribution to Welfare Economics.',
@@ -46,7 +46,30 @@ class _HomeState extends State<Home> {
   }
 
   Column mainBox() {
-    if (k < 10) {
+    if (k == -1) {
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Center(
+              child: Text(
+                'Welcome to Quizzler',
+                style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  k = 0;
+                });
+              },
+              child: Text(
+                'Start Quiz',
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ),
+          ]);
+    } else if (k < 10) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -85,19 +108,31 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Center(child: Text('ThankYou.',style: TextStyle(fontSize: 25,wordSpacing: 2.0),),),
-          Center(child: Text('Your Score is $score .',style: TextStyle(fontSize: 25,wordSpacing: 2.0),),),
-    ElevatedButton(
-    onPressed: () { setState(() {
-      k=0;
-      score=0;
-      scoreKeeper=[];
-    });
-    },
-    child: Text(
-    'Restart',
-    style: TextStyle(color: Colors.white, fontSize: 17),
-    ),),
+          Center(
+            child: Text(
+              'ThankYou.',
+              style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+            ),
+          ),
+          Center(
+            child: Text(
+              'Your Score is $score .',
+              style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                k = 0;
+                score = 0;
+                scoreKeeper = [];
+              });
+            },
+            child: Text(
+              'Restart',
+              style: TextStyle(color: Colors.white, fontSize: 17),
+            ),
+          ),
         ],
       );
     }
