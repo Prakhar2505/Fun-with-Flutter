@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nice_button/nice_button.dart';
 
 void main() {
   runApp(MaterialApp(home: Home()));
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
     'False'
   ];
   List<Icon> scoreKeeper = [];
-
+  Stopwatch s = new Stopwatch();
   Text display() {
     return Text(
       questions[k],
@@ -51,22 +52,26 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Center(child: Text('Welcome to')),
             Center(
               child: Text(
-                'Welcome to Quizzler',
-                style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+                'Quizzler',
+                style: TextStyle(fontSize: 45, wordSpacing: 2.0,fontFamily: 'Satisfy',fontWeight:FontWeight.bold),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  k = 0;
-                });
-              },
-              child: Text(
-                'Start Quiz',
-                style: TextStyle(color: Colors.white, fontSize: 17),
-              ),
+            Image(image:AssetImage('assets/quiz.png'),height:550,width: 600,fit: BoxFit.cover ,),
+            SizedBox(height: 30,),
+            NiceButton(
+              radius: 40,
+              padding: const EdgeInsets.all(15),
+              text: "Start Quiz",
+              icon: Icons.question_answer,
+              gradientColors: [Color(0xff36d1dc), Color(0xff5b86e5)],
+                onPressed: () {
+                  setState(() {
+                    k = 0;
+                  });
+                },
             ),
           ]);
     } else if (k < 10) {
@@ -123,7 +128,7 @@ class _HomeState extends State<Home> {
           ElevatedButton(
             onPressed: () {
               setState(() {
-                k = 0;
+                k = -1;
                 score = 0;
                 scoreKeeper = [];
               });
