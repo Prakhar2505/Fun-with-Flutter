@@ -60,12 +60,12 @@ class _HomeState extends State<Home> {
               ),
             ),
             Image(image:AssetImage('assets/quiz.png'),height:550,width: 600,fit: BoxFit.cover ,),
-            SizedBox(height: 30,),
+            SizedBox(height: 25,),
             NiceButton(
               radius: 40,
               padding: const EdgeInsets.all(15),
               text: "Start Quiz",
-              icon: Icons.question_answer,
+              icon: Icons.all_inclusive,
               gradientColors: [Color(0xff36d1dc), Color(0xff5b86e5)],
                 onPressed: () {
                   setState(() {
@@ -170,7 +170,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(padding: EdgeInsets.all(15), child: mainBox()),
+      body: Container(padding: EdgeInsets.all(25), child: mainBox()),
     );
   }
 }
