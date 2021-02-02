@@ -127,16 +127,18 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Center(
             child: Text(
-              'ThankYou.',
-              style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+              'Thank You Geek.',
+              style: TextStyle(fontSize: 30, wordSpacing: 2.0),
             ),
           ),
+          SizedBox(height: 20,),
           Center(
             child: Text(
-              'Your Score is $score .',
-              style: TextStyle(fontSize: 25, wordSpacing: 2.0),
+              'Your Score is $score.',
+              style: TextStyle(fontSize: 30, wordSpacing: 2.0),
             ),
           ),
+          SizedBox(height: 80,),
           NiceButton(
             radius: 40,
             padding: const EdgeInsets.all(15),
