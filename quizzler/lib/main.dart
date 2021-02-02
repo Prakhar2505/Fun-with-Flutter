@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
   }
 
   Column mainBox() {
+    int qno = k+1;
     if (k == -1) {
       return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,35 +77,46 @@ class _HomeState extends State<Home> {
           ]);
     } else if (k < 10) {
       return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Text("Question $qno / 10",style: TextStyle(fontSize: 25.0),),
           Center(child: display()),
           SizedBox(height: 25),
-          ElevatedButton(
-            onPressed: () {
-              compute('True');
-            },
-            child: Text(
-              'True',
-              style: TextStyle(color: Colors.white, fontSize: 17),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            ),
+          Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(height: 70,
+                child: ElevatedButton(
+                  onPressed: () {
+                    compute('True');
+                  },
+                  child: Text(
+                    'True',
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                  ),
+                ),
+              ),
+              SizedBox(height: 40,),
+              SizedBox(height: 70,
+                child: ElevatedButton(
+                  onPressed: () {
+                    compute('False');
+                  },
+                  child: Text(
+                    'False',
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  ),
+                ),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              compute('False');
-            },
-            child: Text(
-              'False',
-              style: TextStyle(color: Colors.white, fontSize: 17),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-            ),
-          ),
+
           Row(children: scoreKeeper)
         ],
       );
@@ -125,7 +137,12 @@ class _HomeState extends State<Home> {
               style: TextStyle(fontSize: 25, wordSpacing: 2.0),
             ),
           ),
-          ElevatedButton(
+          NiceButton(
+            radius: 40,
+            padding: const EdgeInsets.all(15),
+            text: "Restart",
+            icon: Icons.all_inclusive,
+            gradientColors: [Color(0xff36d1dc), Color(0xff5b86e5)],
             onPressed: () {
               setState(() {
                 k = -1;
@@ -133,10 +150,6 @@ class _HomeState extends State<Home> {
                 scoreKeeper = [];
               });
             },
-            child: Text(
-              'Restart',
-              style: TextStyle(color: Colors.white, fontSize: 17),
-            ),
           ),
         ],
       );
