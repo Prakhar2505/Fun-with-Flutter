@@ -6,7 +6,10 @@ import 'iconContent.dart';
 
 const containerHeight = 70.0;
 const reusableCardColor = Color(0xff1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Color(0xFFEB1555);
+
+enum Gender {Male,Female}
 
 void main() => runApp(BMICalculator());
 
@@ -25,6 +28,12 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,13 +53,23 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: ReusableCard(
-                      colour: reusableCardColor,
+                      onPress: (){
+                      setState(() {
+                        selectedGender = Gender.Male;
+                      });
+                    },
+                      colour: selectedGender == Gender.Male ? reusableCardColor : inactiveCardColor,
                       cardChild: cardContent(cardIcon:FontAwesomeIcons.mars,cardLabel:"MALE"),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
-                      colour: reusableCardColor,
+                      onPress: (){
+                        setState(() {
+                          selectedGender = Gender.Female;
+                        });
+                      },
+                      colour: selectedGender == Gender.Female ? reusableCardColor : inactiveCardColor,
                       cardChild: cardContent(cardIcon: FontAwesomeIcons.venus,cardLabel: ("FEMALE"),),
                     ),
                   ),
@@ -86,9 +105,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-
-
-
-
-//Color(0xff262A4C)
