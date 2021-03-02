@@ -1,13 +1,21 @@
-import 'package:bmi_calculator/BottomButton.dart';
+
+import 'package:bmi_calculator/calculatorBrain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'constants.dart';
+import '../constants.dart';
+import '../components/BottomButton.dart';
+
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage(this.calc);
+  final CalculatorBrain calc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff11163A),
+        title: Center(child: Text('BMI CALCULATOR')),
+      ),
       body: Container(
         color: Color(0xff0A0F33),
         height: double.infinity,
@@ -29,17 +37,29 @@ class ResultsPage extends StatelessWidget {
                   color: kReusableCardColor,
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,crossAxisAlignment: CrossAxisAlignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("UNDERWEIGHT",style: kResultTextStyle,),
-                    Text("30.4",style: kBMITextStyle,),
-                    Text("Pay more attention on yourself",style: kBMIStatsTextStyle,textAlign: TextAlign.center,)
+                    Text(
+                      calc.getResult(),
+                      style: kResultTextStyle,
+                    ),
+                    Text(
+                      calc.BMICalculator(),
+                      style: kBMITextStyle,
+                    ),
+                    Text(
+                      calc.getInterpretations(),
+                      style: kBMIStatsTextStyle,
+                      textAlign: TextAlign.center,
+                    )
                   ],
                 ),
               ),
             ),
-            BottomButton("RECALCULATE", (){
-              Navigator.pushNamed(context, "/");
+            BottomButton("RECALCULATE", () {
+              Navigator.pop(context);
             })
           ],
         ),

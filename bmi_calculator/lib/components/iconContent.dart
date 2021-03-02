@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import 'package:bmi_calculator/constants.dart';
 
 
-class cardContent extends StatelessWidget {
+class CardContent extends StatelessWidget {
   final IconData cardIcon ;
   final String cardLabel;
-  cardContent({@required this.cardIcon,@required this.cardLabel});
+  CardContent({@required this.cardIcon,@required this.cardLabel});
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center,

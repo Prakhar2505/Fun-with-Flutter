@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusableCard.dart';
-import 'iconContent.dart';
-import 'constants.dart';
-import 'RoundIconButton.dart';
+import '../components/reusableCard.dart';
+import '../components/iconContent.dart';
+import '../constants.dart';
+import '../components/RoundIconButton.dart';
+import '../components/BottomButton.dart';
+import 'package:bmi_calculator/calculatorBrain.dart';
 import 'resultsPage.dart';
-import 'package:bmi_calculator/BottomButton.dart';
 
 enum Gender { Male, Female }
 
@@ -54,7 +55,7 @@ class _InputPageState extends State<InputPage> {
                       colour: selectedGender == Gender.Male
                           ? kReusableCardColor
                           : kInactiveCardColor,
-                      cardChild: cardContent(
+                      cardChild: CardContent(
                           cardIcon: FontAwesomeIcons.mars, cardLabel: "MALE"),
                     ),
                   ),
@@ -68,7 +69,7 @@ class _InputPageState extends State<InputPage> {
                       colour: selectedGender == Gender.Female
                           ? kReusableCardColor
                           : kInactiveCardColor,
-                      cardChild: cardContent(
+                      cardChild: CardContent(
                         cardIcon: FontAwesomeIcons.venus,
                         cardLabel: ("FEMALE"),
                       ),
@@ -219,7 +220,10 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             BottomButton("CALCULATE",(){
-              Navigator.pushNamed(context, "/results");
+              CalculatorBrain calc = CalculatorBrain(height,weight);
+              calc.BMICalculator();
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ResultsPage(calc)));
+              // Navigator.pushNamed(context, "/results");
             })
           ],
         ),
