@@ -2,16 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/TasksList.dart';
 import 'package:todo_app/screens/AddTaskScreen.dart';
-import 'package:todo_app/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/task_data.dart';
 
-class TasksPage extends StatefulWidget {
-  @override
-  _TasksPageState createState() => _TasksPageState();
-}
-
-class _TasksPageState extends State<TasksPage> {
-  List<Task> tasks = [Task(name: "buy breads"), Task(name: "buy eggs")];
-
+class TasksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,19 +15,16 @@ class _TasksPageState extends State<TasksPage> {
         child: Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => SingleChildScrollView(
-                      child: Container(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom * 0),
-                    child: AddTaskScreen(addTaskCallback: (value) {
-                      setState(() {
-                        tasks.add(Task(name: value));
-                      });
-                      Navigator.pop(context);
-                    }),
-                  )));
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom * 0),
+                child: AddTaskScreen(),
+              ),
+            ),
+          );
         },
       ),
       backgroundColor: Colors.lightBlueAccent,
@@ -70,7 +61,7 @@ class _TasksPageState extends State<TasksPage> {
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      "${tasks.length} Tasks",
+                      "${Provider.of<TaskData>(context).taskCount} Tasks",
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                     ),
                   ],
@@ -87,7 +78,7 @@ class _TasksPageState extends State<TasksPage> {
                           topLeft: Radius.circular(25.0),
                           topRight: Radius.circular(25.0),
                         )),
-                    child: TasksList(tasks)),
+                    child: TasksList()),
               )
             ],
           ),

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/models/task_data.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
+  @override
+  _AddTaskScreenState createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
   String taskTitle;
-  final Function addTaskCallback;
-  AddTaskScreen({this.addTaskCallback});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,18 +32,27 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               textAlign: TextAlign.center,
               autofocus: true,
-              onChanged: (value){
-                taskTitle =value;
+              onChanged: (value) {
+                taskTitle = value;
               },
             ),
-            SizedBox(height: 20.0,),
+            SizedBox(
+              height: 20.0,
+            ),
             ConstrainedBox(
               constraints: BoxConstraints.tightFor(width: 100, height: 50),
-            child: ElevatedButton(
-                  onPressed: (){addTaskCallback(taskTitle);},
-                  child: Text("Add",style: TextStyle(fontSize: 20.0),),
+              child: ElevatedButton(
+                  onPressed: () {
+                    Provider.of<TaskData>(context,listen: false).addTask(taskTitle);
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Add",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.lightBlueAccent, onPrimary: Colors.white)),
+                      primary: Colors.lightBlueAccent,
+                      onPrimary: Colors.white)),
             )
           ],
         ),
@@ -45,3 +60,13 @@ class AddTaskScreen extends StatelessWidget {
     );
   }
 }
+
+// RawKeyboardListener(
+// focusNode: FocusNode(),
+// onKey: (event) {
+// print(event);
+// if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+// Provider.of<TaskData>(context,listen: false).addTask(taskTitle);
+// Navigator.pop(context);
+// }
+// },
